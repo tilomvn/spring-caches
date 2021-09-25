@@ -1,0 +1,8 @@
+<distributed-cache name="demoEntity">
+	<encoding media-type="application/x-protostream" />
+	<indexing enabled="true">
+		<indexed-entities>
+			<indexed-entity>com.spring.caches.protobuf.DemoEntity</indexed-entity>
+		</indexed-entities>
+	</indexing>
+</distributed-cache>
