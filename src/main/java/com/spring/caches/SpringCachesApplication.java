@@ -7,7 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.spring.caches.services.TestService;
+import com.spring.caches.services.LocalCacheService;
+import com.spring.caches.services.RemoteCacheService;
 
 @SpringBootApplication
 public class SpringCachesApplication {
@@ -19,11 +20,18 @@ public class SpringCachesApplication {
 	}
 
 	@Bean
-	ApplicationRunner run(TestService service) {
+	ApplicationRunner run(RemoteCacheService remoteCacheService, LocalCacheService localCacheService) {
 		return args -> {
-			log.info(service.getById(0).getName());
-			log.info(service.getById(1).getName());
-			log.info(service.getById(0).getName());
+			log.info(remoteCacheService.getById(0).getName());
+			log.info(remoteCacheService.getById(1).getName());
+			log.info(remoteCacheService.getById(0).getName());
+			
+			log.info(localCacheService.getById(0));
+			log.info(localCacheService.getById(1));
+			log.info(localCacheService.getById(0));
+			log.info(localCacheService.getById(0));
+			log.info(localCacheService.getById(0));
+			log.info(localCacheService.getById(0));
 		};
 	}
 }

@@ -11,25 +11,24 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.spring.caches.config.CachesConfig;
-import com.spring.caches.entities.DemoEntity;
 
 @Service
-@CacheConfig(cacheNames = CachesConfig.demoEntity)
-public class TestService {
+@CacheConfig(cacheNames = CachesConfig.localCache, cacheManager = "localCaches")
+public class LocalCacheService {
 	
 	Logger log = LoggerFactory.getLogger(getClass());
 	
-	Map<Integer, DemoEntity> database = new HashMap<>();
+	Map<Integer, String> databases = new HashMap<>();
 	
-	TestService() {
-		for (int i = 0; i < 3; i++) {
-			database.put(i, new DemoEntity(UUID.randomUUID().toString(), "name" + i));
+	LocalCacheService() {
+		for (int i = 0; i < 4; i++) {
+			databases.put(i, UUID.randomUUID().toString());
 		}
 	}
 	
 	@Cacheable
-	public DemoEntity getById(int id) {
+	public String getById(int id) {
 		log.info("Not in cache ...");
-		return database.get(id);
+		return databases.get(id);
 	}
 }
