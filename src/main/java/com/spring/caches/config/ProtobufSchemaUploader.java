@@ -15,7 +15,6 @@ class ProtobufSchemaUploader {
 	
 	ProtobufSchemaUploader(RemoteCacheManager cacheManager) {
 		RemoteCache<String, String> metaDataCache = cacheManager.getCache(ProtobufMetadataManagerConstants.PROTOBUF_METADATA_CACHE_NAME);
-//		RemoteCache<String, String> metaDataCache = cacheManager.getCache(CachesConfig.demoEntity);
 		//DemoEntitySchemaBuilderImpl would be generated at compile time.
 		GeneratedSchema schema = new DemoEntitySchemaBuilderImpl();
 		metaDataCache.put(schema.getProtoFileName(), schema.getProtoFile());
